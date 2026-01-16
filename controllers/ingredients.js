@@ -20,8 +20,8 @@ router.post('/', async (req, res) => {
   console.log(newIngredient)
   await newIngredient.save();    
     res.redirect('/ingredients')
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
     res.redirect('/');
   }
 });
