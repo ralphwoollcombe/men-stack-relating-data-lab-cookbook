@@ -84,9 +84,13 @@ router.delete('/:recipeId', async (req, res) => {
 router.get('/:recipeId/edit', async (req, res) => {
     try {
         const recipe = await Recipe.findById(req.params.recipeId);
-        console.log('recipe ID', req.params.recipeId)
+        const ingredients = await Ingredient.find();
+        await recipe.populate('ingredients')
+        console.log('recipe', recipe)
+        console.log(recipe.ingredients)
         res.render('recipes/edit.ejs', {
             recipe: recipe,
+            ingredients
         })
     } catch (error) {
         console.log(error);

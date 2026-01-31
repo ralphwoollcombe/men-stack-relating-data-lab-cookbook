@@ -13,10 +13,13 @@
         <input type="text" name="name" id="name" value="<%= recipe.name %>"/>
         <label for="instructions">Instructions: </label>
         <input type="text" name="instructions" id="instructions" value="<%= recipe.instructions %>"/>
-        <!-- <label for="ingredients1 ingredients2 ingredients3">Ingredients: </label>
-        <input type="text" name="ingredients" id="ingredients1"/>
-        <input type="text" name="ingredients" id="ingredients2"/>
-        <input type="text" name="ingredients" id="ingredients3"/> -->
+         <ul>
+        <% ingredients.forEach(ingredient => { %>
+        <%= ingredient.name %>
+        <input type="checkbox" name="ingredients" value="<%= ingredient._id %>" <%= recipe.ingredients.some(i => i._id.equals(ingredient._id)) ? 'checked' : '' %> />
+        <br />
+        <% }) %>
+        </ul>
         <button type="submit">Edit recipe</button>
     </form>
 </body>

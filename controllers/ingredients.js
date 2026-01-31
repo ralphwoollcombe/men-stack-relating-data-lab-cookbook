@@ -26,5 +26,14 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.delete('/:ingredientId', async (req, res) => {
+  try {
+    await Ingredient.findByIdAndDelete(req.params.ingredientId);
+    res.redirect('/ingredients');
+  } catch (error) {
+    console.error(error);
+    res.redirect('/');
+  }
+});
 
 module.exports = router;
